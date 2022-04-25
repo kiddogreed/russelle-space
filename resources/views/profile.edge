@@ -1,0 +1,82 @@
+@layout('layouts/app')
+@section('content')
+
+<div class="mt-10 flex justify-between flex-wrap w-full">
+
+  <div class="w-4/12 flex justify-center">
+    @if(auth.user.avatar == null)
+    <img src="/russle-df.jpeg" alt="" class="w-40 h-40 rounded-full border">
+    @else
+     <img src="{{auth.user.avatar}}" alt="" class="w-40 h-40 rounded-full border">
+    @endif
+
+  </div>
+
+  <div class="w-8/12">
+    <div class="flex">
+      <h1 class="text-2xl tracking-wide">{{user.firstName}} {{user.lastName}}</h1>
+      @if(auth.user.id === user.id)
+      <a href="/accounts/edit" class="border border-gray-400 mx-4 rounded px-2 pt-1 font-semibold">Edit Profile</a>
+      @else
+       @if(auth.user.followings.map(f=> f.followingId).includes(user.id))
+        <form action="{{`/follow/${user.id}?_method=delete`}}" method="post">
+          <button type="submit" class="border border-gray-400 text-sm text-white mx-4 rounded px-2 py-1 mt-1 font-semibold" style="background-color: rgb(var(--d69,0,149,246),1)">Unfollow</button>
+        </form>
+        @else
+        <form action="{{`/follow/${user.id}`}}" method="post">
+          <button type="submit" class="border border-gray-400 text-sm text-white mx-4 rounded px-2 py-1 mt-1 font-semibold" style="background-color: rgb(var(--d69,0,149,246),1)">Follow</button>
+        </form>
+        @endif
+      @endif
+    </div>
+    
+  
+
+  <div class="flex my-5">
+    <p class="mr-8"><span class="font-semibold">{{user.posts.length}}</span> posts</p>
+    <p class="mr-8"><span class="font-semibold">{{followers}} </span> followers</p>
+    <p class="mr-8"><span class="font-semibold">{{user.followings.length}}</span> following</p>
+
+  </div>
+
+  <div class="flex my-5">
+    @if(user.details == null)
+    <p class="mr-8">
+      Please Write your Bio
+    </p>
+    @else
+    <p class="mr-8">
+      {{user.details}}
+    </p>
+    @endif
+   
+  
+  </div>
+  
+</div>
+
+  <section class="border-t w-full mt-20">
+    Hello!
+    {{auth.user.firstName}}
+    @if(auth.user.id === user.id)
+    <h2 class="text-center text-sm p-2">POSTS <a href="/posts/create"><i class="fas fa-plus"></i></a> </h2>
+    @endif
+    <article class="grid grid-cols-3 gap-10 px-10">
+      @each(post in user.posts)
+      <img src="{{post.image}}" alt="" class="w-64 h-64 border">
+     @endeach
+
+    </article>
+  </section>
+  
+  <section>
+  
+
+</section>
+
+</div>
+
+
+  
+  
+  @endsection

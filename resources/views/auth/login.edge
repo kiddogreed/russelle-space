@@ -1,0 +1,38 @@
+@layout('layouts/app')
+    @section('content')
+    <section class="flex justify-center py-10">
+        <div class="" style="width:22rem">
+            <article class="border px-10 py-6 bg-white">  
+              <h1 class="text-4xl text-center font-serif " style="font-family:Cursive">RusselleSpace</h1>
+        <form action="/login" method="POST">
+
+            <div class="mt-6">
+               <label for="email"></label>
+               <input class="w-full bg-gray-200 rounded-sm px-2 py-2  my-1 border placeholder-gray-500 text-xs" type="email" name="email" id="email"placeholder="email"/>
+               @if(flashMessages.has('errors.email'))
+               <small>{{flashMessages.get('errors.email')}}</small>
+               @endif
+            </div>
+
+            <div>
+               <label for="password"></label>
+               <input class="w-full bg-gray-200 rounded-sm px-2 py-2  my-1 border  placeholder-gray-500 text-xs" type="password" name="password" id="password"placeholder="password"/>
+               @if(flashMessages.has('errors.password'))
+               <small>{{flashMessages.get('errors.password')}}</small>
+               @endif
+            </div>
+
+            <div class='mt-3'>
+                <input class="w-full text-white rounded py-2 px-2" style="background-color: rgba(var(--d69,0,149,246),1)" type="submit" value="Login"> 
+            </div>
+            <p class="text-center text-gray-500 text-sm py-3">-------- OR --------</p>
+            <p class="text-center text-blue-800 text-md py-3"><a href="https://www.facebook.com">Log in with Facebook</a></p>
+            <p class="text-center text-blue-800 text-xs py-3">Forgot your password?</p>
+        </form>
+            </article>
+            <article class="border mt-3 text-center p-8 bg-white"> 
+                Don't have an account? <a href="/signup" class=" text-blue-500">Sign Up</a>
+              </article>
+        </div>
+   </section>
+  @endsection

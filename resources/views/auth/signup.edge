@@ -1,0 +1,81 @@
+@layout('layouts/app')
+@section('content')
+
+  <section class="flex justify-center py-10">
+    <div class="" style="width:22rem">
+    <article class="border px-10 py-6 bg-white">
+      <h1 class="text-4xl text-center font-serif " style="font-family:Cursive">RusselleSpace</h1>
+      <p class="font-bold text-gray-700 text-center py-4">Sign up to see photos and videos from your friends.</p>
+      <button class='w-full text-white rounded py-1 px-2' style="background-color: rgb(var(--d69,0,149,246),1)">Login with Facebook</button>
+      <p class="text-center text-gray-600 text-sm py-3">_______________OR_______________</p>
+
+      <form action="/signup" method="POST">
+        <div>
+          <label for="first_name"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1" type="text" name="first_name" id="first_name" placeholder="First Name" />
+          @if(flashMessages.has('errors.first_name'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.first_name')}}</small>
+          @endif
+        </div>
+        <div>
+          <label for="last_name"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1" type="text" name="last_name" id="last_name" placeholder="Last Name" />
+          @if(flashMessages.has('errors.last_name'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.last_name')}}</small>
+          @endif
+        </div>
+
+        <div>
+          <label for="email"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1" type="email" name="email" id="email" placeholder="Mobile Number or Email"/>
+          @if(flashMessages.has('errors.email'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.email')}}</small>
+          @endif
+        </div>
+
+        <div>
+          <label for="username"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1" type="text" name="username" id="username" placeholder="Username"/>
+          @if(flashMessages.has('errors.username'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.username')}}</small>
+          @endif
+        </div>
+
+        <div>
+          <label for="password"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1" type="password" name="password" id="password" placeholder="Password" />
+          @if(flashMessages.has('errors.password'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.password')}}</small>
+          @endif
+        </div>
+
+        <div>
+          <label for="password_confirmation"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1" type="password_confirmation" name="password_confirmation" id="password_confirmation" placeholder="confirm password" />
+          @if(flashMessages.has('errors.password_confirmation'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.password_confirmation')}}</small>
+          @endif
+        </div>
+
+        <div>
+          <label for="code"></label>
+          <input class="text-xs w-full bg-gray-200 rounded px-2 py-2 border my-1 " type="text" name="code" id="code" placeholder="Code" />
+          @if(flashMessages.has('errors.code'))
+          <small class="text-xs text-red-600">{{flashMessages.get('errors.code')}}</small>
+          @endif
+        </div>
+        <div class="mt-3">
+        <input class="w-full rounded text-white py-2 px-2" style="background-color: rgb(var(--d69,0,149,246),1)" type="submit" value="Sign Up">
+        </div>
+      
+      </form>
+
+      <p class="py-5 px-3 text-center text-xs text-color-gray-600 ">By signing up, you agree to our Terms, Data Policy and Cookies Policy.</p>
+    </article>  
+    <article class="border mt-3 text-center py-8 bg-white">
+      Have an account?
+      <a href="/login" class="text-blue-500">Login</a>
+    </article> 
+  </div>
+  </section>
+  @endsection
